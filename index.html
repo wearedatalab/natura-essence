@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natura Essence — Fragancias de Interior</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --dark: #2c2c2c;
+            --text: #555;
+            --light: #f7f5f2;
+            --cream: #eeeae3;
+            --gold: #b8a88a;
+            --green: #6b7e5e;
+            --white: #ffffff;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Jost', 'Helvetica Neue', sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            color: var(--text);
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ===== TOPBAR ===== */
+        .topbar {
+            background: var(--dark);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        nav a {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 400;
+            margin: 0 16px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--dark);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after { width: 100%; }
+
+        .logo-header {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .logo-header img {
+            height: 44px;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-icons svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--dark);
+            fill: none;
+            stroke-width: 1.5;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .header-icons svg:hover { opacity: 1; }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 90vh;
+            min-height: 600px;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content .eyebrow {
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+
+        .hero-content h1 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero-content p {
+            font-size: 14px;
+            font-weight: 300;
+            max-width: 420px;
+            margin: 0 auto 28px;
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 13px 36px;
+            border: 1px solid currentColor;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 400;
+            transition: all 0.4s ease;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: white;
+            color: var(--dark);
+            border-color: white;
+        }
+
+        .btn-dark {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+        }
+
+        .btn-dark:hover {
+            background: transparent;
+            color: var(--dark);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 32px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-header .eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .section-header h2 {
+            font-family: var(--serif);
+            font-size: clamp(28px, 3vw, 40px);
+            font-weight: 400;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            font-size: 14px;
+            font-weight: 300;
+            color: var(--text);
+            max-width: 460px;
+            margin: 14px auto 0;
+            line-height: 1.7;
+        }
+
+        /* ===== TWO COL EDITORIAL ===== */
+        .editorial-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .editorial-card {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+        }
+
+        .editorial-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .editorial-card:hover img { transform: scale(1.03); }
+
+        .editorial-card .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+        }
+
+        .editorial-card .content {
+            position: absolute;
+            bottom: 36px;
+            left: 36px;
+            right: 36px;
+            color: white;
+        }
+
+        .editorial-card .content .eyebrow {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+
+        .editorial-card .content h3 {
+            font-family: var(--serif);
+            font-size: clamp(20px, 2.2vw, 30px);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .editorial-card .content .btn {
+            font-size: 10px;
+            padding: 10px 24px;
+        }
+
+        /* ===== PRODUCTS ===== */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 24px;
+        }
+
+        .product {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .product-img {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            background: var(--light);
+            margin-bottom: 16px;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product:hover .product-img img { transform: scale(1.05); }
+
+        .product-img .add-btn {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 12px;
+            border: none;
+            cursor: pointer;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            font-family: var(--sans);
+            font-weight: 400;
+        }
+
+        .product:hover .product-img .add-btn { transform: translateY(0); }
+
+        .product-name {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .product-sub {
+            font-size: 12px;
+            font-weight: 300;
+            color: #999;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .product-price {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--dark);
+        }
+
+        /* ===== FULL EDITORIAL ===== */
+        .full-banner {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            overflow: hidden;
+        }
+
+        .full-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .full-banner .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, transparent 55%);
+        }
+
+        .full-banner .content {
+            position: absolute;
+            top: 50%;
+            left: 64px;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 440px;
+        }
+
+        .full-banner .content .eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 14px;
+            opacity: 0.7;
+        }
+
+        .full-banner .content h2 {
+            font-family: var(--serif);
+            font-size: clamp(30px, 3.5vw, 48px);
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 14px;
+        }
+
+        .full-banner .content p {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.7;
+            opacity: 0.85;
+            margin-bottom: 24px;
+        }
+
+        /* ===== VALUES ===== */
+        .values-bar {
+            background: var(--light);
+            padding: 64px 32px;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .value h4 {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        .value p {
+            font-size: 12px;
+            font-weight: 300;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .value-line {
+            width: 24px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0 auto 16px;
+        }
+
+        /* ===== NEWSLETTER ===== */
+        .newsletter {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 80px 32px;
+        }
+
+        .newsletter .eyebrow {
+            font-size: 10px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .newsletter h2 {
+            font-family: var(--serif);
+            font-size: clamp(26px, 3vw, 36px);
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 400px;
+            margin: 0 auto;
+            border-bottom: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-family: var(--sans);
+            font-size: 13px;
+            padding: 12px 0;
+            outline: none;
+            font-weight: 300;
+        }
+
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.35); }
+
+        .newsletter-form button {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 18px;
+            cursor: pointer;
+            padding: 12px 0 12px 16px;
+            transition: color 0.3s;
+        }
+
+        .newsletter-form button:hover { color: white; }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 64px 32px 40px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+        }
+
+        .footer-brand h3 {
+            font-family: var(--serif);
+            font-size: 22px;
+            color: white;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .footer-brand .sub {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 12px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .footer-col h4 {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .footer-col ul { list-style: none; }
+
+        .footer-col ul li { margin-bottom: 10px; }
+
+        .footer-col ul li a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 300;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: white; }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 32px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 300;
+        }
+
+        .footer-socials { display: flex; gap: 20px; }
+
+        .footer-socials a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+            font-size: 11px;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover { color: white; }
+
+        /* ===== ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .products-grid { grid-template-columns: repeat(3, 1fr); }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .logo-header { position: static; transform: none; }
+            .hero { height: 70vh; min-height: 480px; }
+            .section { padding: 72px 20px; }
+            .editorial-duo { grid-template-columns: 1fr; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .full-banner { height: 60vh; }
+            .full-banner .content { left: 24px; right: 24px; }
+            .values-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .values-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">Envio gratuito a partir de $150.000</div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <nav>
+                <a href="#">Fragancias</a>
+                <a href="#">Velas</a>
+                <a href="#">Nosotros</a>
+            </nav>
+            <div class="logo-header">
+                <img src="images/logo.png" alt="Natura Essence">
+            </div>
+            <div class="header-icons">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+        <img src="images/banner.jpg" alt="Natura Essence — Descubre tu esencia interior">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="left: auto; right: 8%; transform: none; text-align: right;">
+            <div class="eyebrow">Fragancias de Interior</div>
+            <h1>Descubre Tu<br>Esencia Interior</h1>
+            <p>Un viaje sensorial a traves de la pureza de la naturaleza. Ingredientes 100% naturales.</p>
+            <a href="#" class="btn" style="margin-right: 12px;">Comprar Ahora</a>
+            <a href="#" class="btn">Explorar Coleccion</a>
+        </div>
+    </div>
+
+    <!-- Editorial Duo -->
+    <div class="section">
+        <div class="editorial-duo">
+            <div class="editorial-card reveal">
+                <img src="images/collection.jpg" alt="Coleccion Premium">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="eyebrow">Coleccion Premium</div>
+                    <h3>Esencias<br>Exclusivas</h3>
+                    <a href="#" class="btn">Explorar</a>
+                </div>
+            </div>
+            <div class="editorial-card reveal">
+                <img src="images/candles.jpg" alt="Velas Aromaticas">
+                <div class="overlay"></div>
+                <div class="content">
+                    <div class="eyebrow">Velas Aromaticas</div>
+                    <h3>Ritual de<br>Aromas</h3>
+                    <a href="#" class="btn">Descubrir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products -->
+    <div class="section" style="padding-top: 0;">
+        <div class="section-header reveal">
+            <div class="eyebrow">Fragancias de Interior</div>
+            <h2>Nuestras Creaciones</h2>
+            <p>Cada fragancia es una obra de arte olfativa, elaborada artesanalmente con ingredientes puros.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product reveal">
+                <div class="product-img">
+                    <img src="images/collection.jpg" alt="Madera de Oud">
+                    <button class="add-btn">Agregar</button>
+                </div>
+                <div class="product-name">Madera de Oud</div>
+                <div class="product-sub">Notas amaderadas profundas</div>
+                <div class="product-price">$129.000</div>
+            </div>
+            <div class="product reveal">
+                <div class="product-img">
+                    <img src="images/collection.jpg" alt="Lavanda de la Mancha">
+                    <button class="add-btn">Agregar</button>
+                </div>
+                <div class="product-name">Lavanda de la Mancha</div>
+                <div class="product-sub">Aromas puros y relajantes</div>
+                <div class="product-price">$99.000</div>
+            </div>
+            <div class="product reveal">
+                <div class="product-img">
+                    <img src="images/sandalo.jpg" alt="Bosque de Sandalo">
+                    <button class="add-btn">Agregar</button>
+                </div>
+                <div class="product-name">Bosque de Sandalo</div>
+                <div class="product-sub">Calido y envolvente</div>
+                <div class="product-price">$89.000</div>
+            </div>
+            <div class="product reveal">
+                <div class="product-img">
+                    <img src="images/collection.jpg" alt="Rosa Sensorial">
+                    <button class="add-btn">Agregar</button>
+                </div>
+                <div class="product-name">Rosa Sensorial</div>
+                <div class="product-sub">Floral y delicado</div>
+                <div class="product-price">$109.000</div>
+            </div>
+            <div class="product reveal">
+                <div class="product-img">
+                    <img src="images/collection.jpg" alt="Eucalipto Fresco">
+                    <button class="add-btn">Agregar</button>
+                </div>
+                <div class="product-name">Eucalipto Fresco</div>
+                <div class="product-sub">Energia natural</div>
+                <div class="product-price">$99.000</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Banner -->
+    <div class="full-banner">
+        <img src="images/candles.jpg" alt="El arte del aroma">
+        <div class="overlay"></div>
+        <div class="content reveal">
+            <div class="eyebrow">El Arte del Aroma</div>
+            <h2>Un Ritual para<br>los Sentidos</h2>
+            <p>Cada fragancia es una invitacion a desconectar y sumergirse en un universo de sensaciones naturales.</p>
+            <a href="#" class="btn">Conocer la historia</a>
+        </div>
+    </div>
+
+    <!-- Values -->
+    <div class="values-bar">
+        <div class="values-grid">
+            <div class="value reveal">
+                <div class="value-line"></div>
+                <h4>100% Natural</h4>
+                <p>Ingredientes de origen natural, sin quimicos sinteticos.</p>
+            </div>
+            <div class="value reveal">
+                <div class="value-line"></div>
+                <h4>Artesanal</h4>
+                <p>Elaborada a mano por maestros perfumistas.</p>
+            </div>
+            <div class="value reveal">
+                <div class="value-line"></div>
+                <h4>Hecho en Colombia</h4>
+                <p>Creado con pasion y dedicacion artesanal colombiana.</p>
+            </div>
+            <div class="value reveal">
+                <div class="value-line"></div>
+                <h4>Sostenible</h4>
+                <p>Envases reciclables, procesos responsables.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <div class="eyebrow reveal">Exclusivo</div>
+        <h2 class="reveal">Unete a Nuestro Universo</h2>
+        <form class="newsletter-form reveal" onsubmit="event.preventDefault()">
+            <input type="email" placeholder="Tu correo electronico">
+            <button type="submit">&rarr;</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Natura Essence</h3>
+                <div class="sub">Fragancias de Interior</div>
+                <p>Creamos fragancias artesanales que transforman cada espacio en una experiencia sensorial unica. Hecho en Colombia.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Nosotros</h4>
+                <ul>
+                    <li><a href="#">Nuestra Historia</a></li>
+                    <li><a href="#">Ingredientes</a></li>
+                    <li><a href="#">Tiendas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Colecciones</h4>
+                <ul>
+                    <li><a href="#">Fragancias</a></li>
+                    <li><a href="#">Velas</a></li>
+                    <li><a href="#">Ediciones Limitadas</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Envios</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Natura Essence</span>
+            <div class="footer-socials">
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Pinterest</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>
